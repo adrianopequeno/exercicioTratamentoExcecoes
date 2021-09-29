@@ -1,12 +1,12 @@
 package model.entities;
 
 public class Account {
-	
+
 	private Integer number;
 	private String holder;
 	private Double balance;
 	private Double withdrawLimit;
-	
+
 	public Account() {
 	}
 
@@ -48,41 +48,23 @@ public class Account {
 	public void setWithdrawLimit(Double withdrawLimit) {
 		this.withdrawLimit = withdrawLimit;
 	}
-	
+
 	// Deposito
 	public void deposit(double amount) {
 		balance += amount;
 	}
-	
+
 	// Saque
 	public void withdraw(double amount) {
 		balance -= amount;
 	}
 
+	public String validateWithdraw(double amount) {
+		if (amount > getWithdrawLimit())
+			return "Erro de saque: A quantia excede o limite de saque!";
+		if (amount > getBalance())
+			return "Erro de saque: Saldo insuficiente!";
+		return null;
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
